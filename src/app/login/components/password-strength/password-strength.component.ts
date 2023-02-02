@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { EColors } from 'src/app/shared/enums/colors';
 
 @Component({
   selector: 'app-password-strength',
@@ -12,39 +13,39 @@ export class PasswordStrengthComponent implements OnChanges {
   public secondBar!: string;
   public thirdBar!: string;
 
+  ngOnChanges(): void {
+    this.changeBarColor(this.changeBarValue);
+  }
+
   private changeBarColor(value: string) {
     switch (value) {
       case 'empty':
-        this.firstBar = 'gray';
-        this.secondBar = 'gray';
-        this.thirdBar = 'gray';
+        this.firstBar = EColors.gray;
+        this.secondBar = EColors.gray;
+        this.thirdBar = EColors.gray;
         break;
       case 'notEnough':
-        this.firstBar = 'red';
-        this.secondBar = 'red';
-        this.thirdBar = 'red';
+        this.firstBar = EColors.red;
+        this.secondBar = EColors.red;
+        this.thirdBar = EColors.red;
         break;
       case 'easy':
-        this.firstBar = 'red';
-        this.secondBar = 'gray';
-        this.thirdBar = 'gray';
+        this.firstBar = EColors.red;
+        this.secondBar = EColors.gray;
+        this.thirdBar = EColors.gray;
         break;
       case 'medium':
-        this.firstBar = 'yellow';
-        this.secondBar = 'yellow';
-        this.thirdBar = 'gray';
+        this.firstBar = EColors.yellow;
+        this.secondBar = EColors.yellow;
+        this.thirdBar = EColors.gray;
         break;
       case 'hard':
-        this.firstBar = 'green';
-        this.secondBar = 'green';
-        this.thirdBar = 'green';
+        this.firstBar = EColors.green;
+        this.secondBar = EColors.green;
+        this.thirdBar = EColors.green;
         break;
       default:
         break;
     }
-  }
-
-  ngOnChanges(): void {
-    this.changeBarColor(this.changeBarValue);
   }
 }

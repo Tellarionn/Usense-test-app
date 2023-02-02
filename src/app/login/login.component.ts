@@ -25,6 +25,18 @@ export class LoginComponent implements OnDestroy {
   private readonly isCharacterSymbolRegExp = new RegExp(ERegExp.isCharacterSymbol);
   private readonly isPasswordHardRegExp = new RegExp(ERegExp.isHard);
 
+  ngOnInit(): void {
+    this.subscription$ = this.passwordControl.valueChanges.subscribe(
+      (value: string) => {
+        this.isEmpty(value);
+        this.isLengthEnough(value),
+        this.isPasswordEasy(value),
+        this.isPasswordMedium(value);
+        this.isPasswordHard(value);
+      }
+    );
+  }
+
   private isEmpty(value: string): void {
     if (value.length === 0 || !value) {
       this.changeBarValue = EColors.empty;
@@ -66,18 +78,6 @@ export class LoginComponent implements OnDestroy {
       this.changeBarValue = EColors.hard;
       this.title = EMessages.hardPassword;
     }
-  }
-
-  ngOnInit(): void {
-    this.subscription$ = this.passwordControl.valueChanges.subscribe(
-      (value: string) => {
-        this.isEmpty(value);
-        this.isLengthEnough(value),
-        this.isPasswordEasy(value),
-        this.isPasswordMedium(value);
-        this.isPasswordHard(value);
-      }
-    );
   }
 
   ngOnDestroy(): void {
