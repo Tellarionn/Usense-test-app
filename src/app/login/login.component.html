@@ -1,0 +1,16 @@
+<mat-card class="container">
+  <form class="form-container">
+    <mat-card-content>
+      <mat-card-title>Test Password Strength</mat-card-title>
+      <input
+        class="password-container"
+        [formControl]="passwordControl"
+        type="text"
+      />
+      <app-password-strength
+        [changeBarValue]="changeBarValue"
+      ></app-password-strength>
+      <h3>{{ title }}</h3>
+    </mat-card-content>
+  </form>
+</mat-card>
